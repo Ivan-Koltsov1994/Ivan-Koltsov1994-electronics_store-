@@ -1,7 +1,7 @@
 from scr.dataclass import Product
 
 
-item = Product('Телефон', 10000, 5)
-print(item.name)
-
-
+# Считываем данные из  csv-файла и создаем экземпляры класса, выводим длину массива
+Product.instantiate_from_csv()
+print(len(Product.all))
+print(Product.all)

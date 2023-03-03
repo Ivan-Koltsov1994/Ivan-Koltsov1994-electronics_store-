@@ -26,6 +26,12 @@ def test_product_calculate_total():
 def test_product_name():
     """Тестируем метод возвращения имени и при не прохождении проверки длины имени возвращает инициализированное имя"""
     prod1 = Product("Самсунг", 30000, 20)
-    prod1.name ='Супермегайфона'
+    prod1.name = 'Супермегайфона'
     assert prod1.name == "Самсунг"
 
+
+def test_instantiate_from_csv():
+    """Тестируем, что метод адекватно абрабатывает данные в  массив """
+    Product.instantiate_from_csv()
+    item1 = Product.all[0]
+    assert item1 is not None
