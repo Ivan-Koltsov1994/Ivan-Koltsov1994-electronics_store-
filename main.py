@@ -5,3 +5,4 @@ from scr.dataclass import Product
 Product.instantiate_from_csv()
 print(len(Product.all))
 print(Product.all)
+

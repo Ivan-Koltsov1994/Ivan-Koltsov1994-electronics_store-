@@ -1,4 +1,5 @@
 from scr.dataclass import Product
+import pytest
 
 
 def test_product_init():
@@ -25,9 +26,11 @@ def test_product_calculate_total():
 
 def test_product_name():
     """Тестируем метод возвращения имени и при не прохождении проверки длины имени возвращает инициализированное имя"""
-    prod1 = Product("Самсунг", 30000, 20)
-    prod1.name = 'Супермегайфона'
-    assert prod1.name == "Самсунг"
+    prod1 = Product("Cмартфорн", 30000, 20)
+    prod1.name = "Cамсунг"
+    assert prod1.name == "Cамсунг"
+    with pytest.raises(Exception):
+        prod1.name = 'Длина названия товара больше 10 символов'
 
 
 def test_instantiate_from_csv():
@@ -35,3 +38,11 @@ def test_instantiate_from_csv():
     Product.instantiate_from_csv()
     item1 = Product.all[0]
     assert item1 is not None
+
+
+def test_is_integer_num():
+    """Тестируем статический метод определения целого числа в методе класса """
+
+    assert Product.is_integer_num(10) is True
+    assert Product.is_integer_num(5.0) is True
+    assert Product.is_integer_num(7.5) is False
