@@ -16,6 +16,12 @@ class Product:
         self.amount = amount
         self.all.append(self)
 
+    def __repr__(self):
+        return f'Товар: {self.__name}, цена: {self.price}, в наличии: {self.amount}'
+
+    def __str__(self):
+        return f'Товар: {self.__name}'
+
     @property
     def name(self) -> str:
         return self.__name
@@ -38,13 +44,12 @@ class Product:
         return total
 
     @classmethod
-    def instantiate_from_csv(cls):
+    def instantiate_from_csv(cls,path):
         """Метод cчитывает данные из csv-файла и создает экземпляры класса,
         инициализируя их данными из файла"""
         items = []
-        path = '../items.csv'
-        with open(path, 'r', encoding='windows-1251', newline='') as file:
-            list = csv.DictReader(file)
+        with open(path, 'r', encoding='windows-1251', newline='') as csvfile:
+            list = csv.DictReader(csvfile)
             for row in list:
                 items.append(cls(row['name'], int(row['price']), int(row['quantity'])))
         return items
@@ -57,4 +62,3 @@ class Product:
             return True
         if isinstance(num, float):
             return num.is_integer()
-        return False

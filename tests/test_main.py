@@ -10,6 +10,16 @@ def test_product_init():
     assert prod1.amount == 20
 
 
+def test_product_repr():
+    item = Product('Полиграф', 1600, 4)
+    assert item.__repr__() == 'Товар: Полиграф, цена: 1600, в наличии: 4'
+
+
+def test_product_str():
+    item = Product('Полиграф', 1600, 3)
+    assert item.__str__() == 'Товар: Полиграф'
+
+
 def test_product_discount():
     """Тестируем метод применения скидки"""
     prod1 = Product("Самсунг", 30000, 20)
@@ -35,7 +45,8 @@ def test_product_name():
 
 def test_instantiate_from_csv():
     """Тестируем, что метод адекватно абрабатывает данные в  массив """
-    Product.instantiate_from_csv()
+    path = "items.csv"
+    Product.instantiate_from_csv(path)
     item1 = Product.all[0]
     assert item1 is not None
 
