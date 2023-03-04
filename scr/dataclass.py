@@ -26,7 +26,7 @@ class Product:
         if len(name) <= 10:
             self.__name = name
         else:
-            print('Длина наименования товара превышает 10 символов')
+            raise Exception("Название не может быть длиннее 10 символов.")
 
     def apply_discount(self):
         """Метод возвращает общую стоимость конкретного товара в магазине"""
@@ -43,8 +43,8 @@ class Product:
         инициализируя их данными из файла"""
         items = []
         path = '../items.csv'
-        with open(path, 'r', encoding='windows-1251', newline='') as csvfile:
-            list = csv.DictReader(csvfile)
+        with open(path, 'r', encoding='windows-1251', newline='') as file:
+            list = csv.DictReader(file)
             for row in list:
                 items.append(cls(row['name'], int(row['price']), int(row['quantity'])))
         return items
@@ -58,15 +58,3 @@ class Product:
         if isinstance(num, float):
             return num.is_integer()
         return False
-
-
-#Product.instantiate_from_csv()
-#print(len(Product.all))
-#print(Product.all)
-#Product.instantiate_from_csv()  # создание объектов из данных файла
-#print(len(Product.all))  # в файле 5 записей с данными по товарам
-#item1 = Product.all[0]
-#print(item1.name)
-#print(Product.is_integer_num(5))
-#print(Product.is_integer_num(5.0))
-#print(Product.is_integer_num(5.5))
