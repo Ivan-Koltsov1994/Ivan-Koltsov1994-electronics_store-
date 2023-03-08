@@ -3,7 +3,7 @@ import csv
 
 class Product:
     pay_rate = 1  # атрибут устанавливает уровень цен
-    all = []  # атрибутдля хранения созданных экземпляров класса
+    all = []  # атрибут для хранения созданных экземпляров класса
 
     def __new__(cls, *args, **kwargs):
         print("Создается новый экземпляр Product.")
@@ -44,7 +44,7 @@ class Product:
         return total
 
     @classmethod
-    def instantiate_from_csv(cls,path):
+    def instantiate_from_csv(cls, path):
         """Метод cчитывает данные из csv-файла и создает экземпляры класса,
         инициализируя их данными из файла"""
         items = []
