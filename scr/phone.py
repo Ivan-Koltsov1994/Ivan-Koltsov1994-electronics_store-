@@ -6,7 +6,7 @@ class Phone(Product):
 
     def __init__(self, name: str, price: int, quantity: int,
                  number_of_sim: int):  # переопределяем метод базового класса
-        super().__init__(name, price, quantity)  # вызываем методы базового класса
+        super().__init__(name, price, quantity)  # вызываем  базового класса
         self.__number_of_sim = number_of_sim
 
     def __repr__(self):
@@ -23,7 +23,7 @@ class Phone(Product):
         if self.number_of_sim > 0:
             self.__number_of_sim = number_of_sim
         if self.number_of_sim <= 0:
-            raise Exception(f"ValueError: Количество физических SIM-карт должно быть целым числом больше нуля.")
+            raise ValueError("Количество физических SIM-карт должно быть целым числом больше нуля.")
 
     def __add__(self, other) -> int:
         """Метод скадывает экземпляры класса Phone с другим по кол-ву количество товаров в наличии"""

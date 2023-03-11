@@ -28,7 +28,7 @@ def test_phone_number_of_sim():
     phone1.number_of_sim = 3
     assert phone1.number_of_sim == 3
     with pytest.raises(Exception):
-        phone1.number_of_sim = 'ValueError: Количество физических SIM-карт должно быть целым числом больше нуля.'
+        phone1.number_of_sim = '"Количество физических SIM-карт должно быть целым числом больше нуля."'
 
 def test_phone_add():
     """Тестируем метод __add__"""
