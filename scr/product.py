@@ -15,6 +15,7 @@ class Product:
         self.price = price
         self.amount = amount
         self.all.append(self)
+        super().__init__()  # при множественном наследовании "пробрасываем" на следующий класс
 
     def __repr__(self):
         return f'Товар: {self.__name}, цена: {self.price}, в наличии: {self.amount}'
