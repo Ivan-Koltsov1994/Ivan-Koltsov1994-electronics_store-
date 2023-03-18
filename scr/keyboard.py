@@ -21,5 +21,5 @@ class Mixinlog:
 
 
 class KeyBoard(Product, Mixinlog):
-    """Класс наследуемый от класса Product,Mixinlog описывает свойства товара - клавиатура"""
+    """Класс наследуемый от класса Product, Mixinlog описывает свойства товара - клавиатура"""
     pass

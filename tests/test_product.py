@@ -31,7 +31,7 @@ def test_product_discount():
 
 
 def test_product_calculate_total():
-    """Тестируем метод рассчета суммарной стоимости товара в классе Product"""
+    """Тестируем метод расчета суммарной стоимости товара в классе Product"""
     prod1 = Product("Самсунг", 30000, 20)
     assert prod1.calculate_total_price() == 600000
 
@@ -47,7 +47,7 @@ def test_product_name():
 
 
 def test_product_instantiate_from_csv():
-    """Тестируем, что метод адекватно абрабатывает данные в  массив в классе Product """
+    """Тестируем, что метод адекватно обрабатывает данные в массив в классе Product """
     path = "items.csv"
     Product.instantiate_from_csv(path)
     item1 = Product.all[0]
@@ -60,3 +60,15 @@ def test_product_is_integer_num():
     assert Product.is_integer_num(10) is True
     assert Product.is_integer_num(5.0) is True
     assert Product.is_integer_num(7.5) is False
+
+
+def test_product_file_not_found_error():
+    """Тестируем ожидаемую обработку исключения FileNotFoundError в связи с отсутствием файла"""
+    path = '../items.csv'
+    assert Product.instantiate_from_csv(path) == print(f"По указанному пути  файл item.csv отсутствует")
+
+
+def test_product_instantiate_csv_error():
+    """Тестируем ожидаемую обработка исключения InstantiateCSVError, так как файл поврежден"""
+    path = 'items_err.csv'
+    assert Product.instantiate_from_csv(path) == print("Файл item.csv поврежден")
