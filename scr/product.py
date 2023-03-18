@@ -1,7 +1,9 @@
 import csv
+from scr.errors import InstantiateCSVError
 
 
 class Product:
+    """Класс для работы с продуктами"""
     pay_rate = 1  # атрибут устанавливает уровень цен
     all = []  # атрибут для хранения созданных экземпляров класса
 
@@ -29,7 +31,7 @@ class Product:
 
     @name.setter
     def name(self, name: str) -> None:
-        """Возвращает имя товара, при превышении 10 символов возвращете исключение """
+        """Возвращает имя товара, при превышении 10 символов возвращает исключение """
         if len(name) <= 10:
             self.__name = name
         else:
@@ -45,19 +47,27 @@ class Product:
         return total
 
     @classmethod
-    def instantiate_from_csv(cls, path):
+    def instantiate_from_csv(cls, path) -> None:
         """Метод cчитывает данные из csv-файла и создает экземпляры класса,
         инициализируя их данными из файла"""
         items = []
-        with open(path, 'r', encoding='windows-1251', newline='') as csvfile:
-            list = csv.DictReader(csvfile)
-            for row in list:
-                items.append(cls(row['name'], int(row['price']), int(row['quantity'])))
-        return items
+        try:
+            with open(path, 'r', encoding='windows-1251', newline='') as csvfile:
+                list = csv.DictReader(csvfile)
+                for row in list:
+                    if list == ['name', 'price', 'quantity']:
+                        items.append(cls(row['name'], int(row['price']), int(row['quantity'])))
+                    else:
+                        raise InstantiateCSVError
+        except FileNotFoundError:
+            print(f"По указанному пути  файл item.csv отсутствует")
+
+        except InstantiateCSVError:
+            print("Файл item.csv поврежден")
 
     @staticmethod
     def is_integer_num(num):
-        """Метод  проверяет, является ли число (например, полученное из csv-файла) целым, если нет, то возвращает в
+        """Метод проверяет, является ли число (например, полученное из csv-файла) целым, если нет, то возвращает в
         виде целого """
         if isinstance(num, int):
             return True

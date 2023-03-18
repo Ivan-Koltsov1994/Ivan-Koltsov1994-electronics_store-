@@ -24,15 +24,24 @@ def main():
     # phone2 = Phone("iPhone 14", 120_000, 5, 2)
     # print(phone1.__add__(phone2))
 
-    kb = KeyBoard('Dark Project KD87A', 9600, 5)
-    print(kb)
-    print(kb.language)
-    kb.change_lang()
-    print(kb.language)
-    kb.change_lang()
-    print(kb.language)
-    print(KeyBoard.__mro__)
-    kb.language = 'CH'
+    #kb = KeyBoard('Dark Project KD87A', 9600, 5)
+    #print(kb)
+    #print(kb.language)
+    #kb.change_lang()
+    #print(kb.language)
+    #kb.change_lang()
+    #print(kb.language)
+    #print(KeyBoard.__mro__)
+    #kb.language = 'CH'
+
+    # Файл items.csv отсутствует.
+    path = '../items.csv'
+    Product.instantiate_from_csv(path)
+
+    # В файле items.csv удалена последняя колонка.
+    path = 'items_err.csv'
+    Product.instantiate_from_csv(path)
+
 
 
 if __name__ == '__main__':
